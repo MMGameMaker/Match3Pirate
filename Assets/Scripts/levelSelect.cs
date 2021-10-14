@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class levelSelect : MonoBehaviour
 {
+    bool firstPlay;
 
     [System.Serializable]
     public struct ButtonPlayerPrefs
@@ -14,6 +15,22 @@ public class levelSelect : MonoBehaviour
     }
 
     public ButtonPlayerPrefs[] buttons;
+
+    private void Awake()
+    {
+        if (Application.isEditor == false)
+        {
+            if (PlayerPrefs.GetInt("FirstPlay", 1) == 1)
+            {
+                firstPlay = true;
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.SetInt("FirstPlay", 0);
+                PlayerPrefs.Save();
+            }
+            else
+                firstPlay = false;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +54,6 @@ public class levelSelect : MonoBehaviour
             }
 
         }
-
-        
-
     }
 
     // Update is called once per frame

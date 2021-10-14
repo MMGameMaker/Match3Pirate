@@ -34,7 +34,6 @@ public class HUD : MonoBehaviour
                 stars[i].enabled = false;
             }
         }
-
     }
 
     // Update is called once per frame
@@ -134,4 +133,8 @@ public class HUD : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("levelSelect");
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
